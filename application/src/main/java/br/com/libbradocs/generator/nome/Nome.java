@@ -1,8 +1,6 @@
 package br.com.libbradocs.generator.nome;
 
-import br.com.libbradocs.generator.cpf.CPF;
-import br.com.libbradocs.generator.uf.UF;
-
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -84,6 +82,17 @@ public class Nome {
             stringBuilder.append(getSobrenome());
 
             return stringBuilder.toString();
+        }
+
+        public List<String> get(int quantidade) {
+
+            List<String> nomes = new ArrayList<>();
+
+            for (int i = 0; i < quantidade; i++) {
+                nomes.add(get());
+            }
+
+            return nomes;
         }
 
         private String getNome() {
