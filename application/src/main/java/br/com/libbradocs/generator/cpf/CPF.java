@@ -50,14 +50,11 @@ public class CPF {
                     number[i] = RANDOM.nextInt(10);
                 }
             }
-
-            Integer[] cpfCompleto = calcularDigitosVerificadores(number);
-
-            for (Integer digito : cpfCompleto) {
-                System.out.print(digito);
-            }
-
-            return Arrays.toString(cpfCompleto);
+            
+            return Arrays.stream(calcularDigitosVerificadores(number))
+                    .map(String::valueOf)
+                    .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
+                    .toString();
         }
 
         public static Integer[] calcularDigitosVerificadores(Integer[] cpfBase) {
