@@ -1,5 +1,7 @@
 package br.com.libbradocs.generator.uf;
 
+import java.util.Random;
+
 public enum UF {
     AC {
         @Override
@@ -302,5 +304,14 @@ public enum UF {
     public abstract String getNome();
 
     public abstract Integer getDigitoRegiao();
+
+    public static class Builder {
+
+        private static final Random RANDOM = new Random();
+
+        public String get() {
+            return UF.values()[RANDOM.nextInt(UF.values().length)].getNome();
+        }
+    }
 
 }
