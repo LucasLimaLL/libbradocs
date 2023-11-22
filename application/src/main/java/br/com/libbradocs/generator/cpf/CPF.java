@@ -20,6 +20,25 @@ public class CPF {
             return this;
         }
 
+        public Builder digito(String digits) {
+
+            if (digits.length() > 9) {
+                digits = digits.substring(0, 9);
+            }
+
+            for (int i = 0; i < digits.length(); i++) {
+                if (Character.isDigit(digits.substring(i, i + 1).toCharArray()[0])) {
+                    number[i] = Integer.valueOf(digits.substring(i, i + 1));
+                }
+            }
+
+            return this;
+        }
+
+        public Builder digito(Long digitos) {
+            return digito(String.valueOf(digitos));
+        }
+
         public Builder regiao(UF uf) {
             number[8] = uf.getDigitoRegiao();
             return this;
@@ -38,7 +57,7 @@ public class CPF {
                 System.out.print(digito);
             }
 
-            return cpfCompleto.toString();
+            return Arrays.toString(cpfCompleto);
         }
 
         public static Integer[] calcularDigitosVerificadores(Integer[] cpfBase) {
